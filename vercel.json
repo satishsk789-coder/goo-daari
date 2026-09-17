@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/businesses/:town/:slug.html", "destination": "/business.html?town=:town&slug=:slug" }
+  ]
+}

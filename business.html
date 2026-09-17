@@ -1,51 +1,30 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Business | GOO DAARI</title>
-<meta name="description" content="Find local businesses and services on GOO DAARI.">
-<style>
-body{font-family:Arial,sans-serif;margin:0;background:#f7faf8;color:#18352a}
-.wrap{max-width:980px;margin:auto;padding:24px}
-.card{background:#fff;border-radius:18px;padding:28px;box-shadow:0 4px 24px rgba(0,0,0,.08)}
-a{color:#16734b;text-decoration:none}
-.btn{display:inline-block;padding:12px 18px;border-radius:10px;background:#16734b;color:white;margin:6px 6px 6px 0}
-.muted{color:#66756d}
-</style>
-</head>
-<body>
-<div class="wrap">
-<a href="index.html">← GOO DAARI</a>
-<div id="app" class="card" style="margin-top:18px">Loading business…</div>
-</div>
-<script src="data.js"></script>
+<!doctype html><html lang="en-IN"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Business | GOO DAARI</title><meta id="metaDescription" name="description" content="Find local businesses, services and professionals on GOO DAARI.">
+<meta name="robots" content="index,follow,max-image-preview:large"><link id="canonical" rel="canonical" href="https://goodaari.com/businesses/">
+<meta id="ogTitle" property="og:title" content="Business | GOO DAARI"><meta id="ogDescription" property="og:description" content="Find local businesses, services and professionals on GOO DAARI."><meta id="ogUrl" property="og:url" content="https://goodaari.com/businesses/"><meta property="og:type" content="website">
+<link rel="stylesheet" href="/styles.css"><script src="/data.js"></script><script src="/location.js"></script><script src="/app.js" defer></script>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-PXP2QQRK');</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BQF9M2QWW3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-BQF9M2QWW3',{send_page_view:true});</script>
+</head><body><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PXP2QQRK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<header class="nav"><div class="nav-inner"><a class="brand" href="/"><img src="/assets/goo-daari-logo.png" alt="GOO DAARI - Find Local. Get It Done." style="width:175px;height:auto;max-height:58px;object-fit:contain"></a><div class="location">📍 <select id="locationSelect" class="location-select" aria-label="Choose location"></select></div><nav class="navlinks"><a href="/services.html">Services</a><a href="/businesses.html">Businesses</a><a href="/how-it-works.html">How it works</a><a href="/about.html">About</a><a class="outline" href="/list-your-business.html">List Your Business</a></nav><button class="mobile-menu" onclick="document.querySelector('.navlinks').style.display=document.querySelector('.navlinks').style.display==='flex'?'none':'flex'">☰</button></div></header>
+<div class="container" style="padding-top:18px"><a class="business-back back" href="/search.html">← Back to search</a></div>
+<main id="businessMain"><div class="container"><div class="panel"><h1>Loading business…</h1><p>Loading local listing details.</p></div></div></main>
+<footer><div class="container"><div class="footer-grid"><div><h3 style="color:#fff">GOO DAARI</h3><p>Find local businesses, services, rentals and professionals across the Godavari region.</p><p style="color:#93ada3">GOO DAARI — అన్నిటికీ ఒకటే దారి.</p></div><div><h4>Explore</h4><a href="/services.html">Services</a><a href="/businesses.html">Businesses</a><a href="/search.html">Search</a><a href="/guides/">Local Guides</a><a href="/about.html">About Us</a></div><div><h4>For Business</h4><a href="/list-your-business.html">List Your Business</a><a href="mailto:business@goodaari.com">Partner with us</a></div><div><h4>Areas</h4><span>Peddapuram</span><span>Anaparthi</span><span>Chadalada</span><span>Jaggampeta</span><span>Kadiam</span><span>Kakinada</span><span>Pithapuram</span><span>Rajamahendravaram</span><span>Samalkota</span></div></div><div class="copyright">© 2026 GOO DAARI. All rights reserved. · Local discovery platform.</div></div></footer>
 <script>
 (function(){
-  const params=new URLSearchParams(location.search);
-  const id=params.get('id');
-  const list=window.GOO_DAARI_LISTINGS || window.listings || window.businesses || [];
-  const norm=s=>String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-  const item=list.find(x=>String(x.id||'')===id || norm(x.name||x.business_name||'')===id);
-  const app=document.getElementById('app');
-  if(!item){app.innerHTML='<h1>Business not found</h1><p class="muted">Please return to GOO DAARI and choose a business again.</p>';return;}
-  const name=item.name||item.business_name||'Local Business';
-  const category=item.category||item.service_category||'Local Business';
-  const location=item.location||item.city||'';
-  const phone=item.phone||item.mobile||item.contact||'';
-  const wa=String(phone).replace(/\D/g,'');
-  document.title=name+' | '+category+' | GOO DAARI';
-  app.innerHTML='<h1>'+esc(name)+'</h1>'+
-    '<p><strong>'+esc(category)+'</strong>'+(location?' · '+esc(location):'')+'</p>'+
-    (item.description?'<p>'+esc(item.description)+'</p>':'')+
-    (phone?'<p>Phone: '+esc(phone)+'</p>':'')+
-    '<div>'+
-    (phone?'<a class="btn" href="tel:'+esc(phone)+'">Call</a>':'')+
-    (wa?'<a class="btn" target="_blank" href="https://wa.me/'+wa+'">WhatsApp</a>':'')+
-    '</div>'+
-    '<p class="muted" style="margin-top:24px">GOO DAARI helps you find local businesses, services, rentals and professionals.</p>';
-  function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+ const DATA=window.GOO_DAARI_DATA||[]; const p=new URLSearchParams(location.search); const slug=p.get('slug')||''; const town=p.get('town')||'';
+ const esc=s=>String(s??'').replace(/[&<>'"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','\"':'&quot;'}[m]));
+ const r=DATA.find(x=>String(x.slug||'')===slug && String(x.town_slug||'')===town) || DATA.find(x=>String(x.slug||'')===slug);
+ const main=document.getElementById('businessMain');
+ if(!r){main.innerHTML='<div class="container"><div class="panel"><h1>Business not found</h1><p>We could not find this listing. Please return to search.</p><a class="action primary" href="/search.html">Back to search</a></div></div>';return;}
+ const name=r['Business Name']||'Local business', sub=r['Subcategory']||r['Top Category']||'Local business', t=r.Town||town||'Local area';
+ const address=r.Address||'Address not captured'; const phone=r.Phone||''; const hours=r.Hours||'Hours not captured'; const rating=r.Rating?`★ ${esc(r.Rating)}${r.Reviews?' · '+esc(r.Reviews)+' reviews':''}`:'Not captured';
+ const canonical=`https://goodaari.com/businesses/${encodeURIComponent(r.town_slug||town)}/${encodeURIComponent(r.slug)}.html`;
+ const desc=`${name} in ${t}. ${sub}. Find address, public contact details, hours and directions on GOO DAARI.`;
+ document.title=`${name} | ${sub} in ${t} | GOO DAARI`; document.getElementById('metaDescription').content=desc; document.getElementById('canonical').href=canonical; document.getElementById('ogTitle').content=document.title; document.getElementById('ogDescription').content=desc; document.getElementById('ogUrl').content=canonical;
+ const tel=phone.replace(/[^0-9+]/g,''); const wa=phone.replace(/[^0-9]/g,''); const maps='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(name+' '+address);
+ main.innerHTML=`<div class="container crumb"><a class="back" href="/businesses.html">← All businesses</a> · ${esc(t)} · ${esc(sub)}</div><section class="profile"><div class="container profile-grid"><div class="panel"><span class="badge">${esc(sub)}</span><h1>${esc(name)}</h1><p style="color:#60736b">${esc(t)}</p><div class="facts"><div class="fact"><b>Address</b><span>${esc(address)}</span></div>${phone?`<div class="fact"><b>Phone</b><span>${esc(phone)}</span></div>`:''}<div class="fact"><b>Hours</b><span>${esc(hours)}</span></div><div class="fact"><b>Public rating signal</b><span>${rating}</span></div></div><div class="actions">${phone?`<a class="action primary" href="tel:${esc(tel)}">Call</a><a class="action" href="https://wa.me/${esc(wa)}" target="_blank" rel="noopener">WhatsApp</a>`:''}<a class="action" href="${esc(maps)}" target="_blank" rel="noopener">Directions</a></div></div><aside class="panel"><h3>About this listing</h3><p>This is a local research listing on GOO DAARI. Public information may have been collected from business search and directory sources. It is not shown as GOO DAARI Verified unless the owner has confirmed it.</p><div class="notice">Listing status: ${esc(r['Listing Status']||'Research Lead')}</div><p style="margin-top:14px"><a class="back" href="/list-your-business.html">Own this business? Claim or update this listing →</a></p></aside></div></section></main>`;
+ const ld={'@context':'https://schema.org','@type':'LocalBusiness','name':name,'url':canonical,'areaServed':t}; if(phone)ld.telephone=phone; if(address)ld.address={'@type':'PostalAddress','streetAddress':address,'addressLocality':t,'addressRegion':'Andhra Pradesh','addressCountry':'IN'}; const s=document.createElement('script');s.type='application/ld+json';s.textContent=JSON.stringify(ld);document.head.appendChild(s);
 })();
-</script>
-</body>
-</html>
+</script></body></html>

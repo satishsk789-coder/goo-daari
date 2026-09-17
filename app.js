@@ -122,3 +122,51 @@ document.addEventListener('click', function(e){
     if(term) gooDaariTrack('search', {search_term:term, location:selectedTownName()});
   }
 });
+// GOO DAARI UX patch: searchable result panel + business detail modal with close/back support.
+(function(){
+  const esc = s => String(s??'').replace(/[&<>'"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[m]));
+  function ensureUI(){
+    if(!document.getElementById('gooBusinessModal')){
+      const modal=document.createElement('div');
+      modal.id='gooBusinessModal'; modal.className='goo-modal'; modal.setAttribute('aria-hidden','true');
+      modal.innerHTML=`<div class="goo-modal-backdrop" data-close-business></div><div class="goo-modal-dialog" role="dialog" aria-modal="true" aria-label="Business details"><div class="goo-modal-top"><button class="goo-modal-close" type="button" aria-label="Close" data-close-business>×</button><a class="goo-modal-full" id="gooModalFull" href="#">Open full page ↗</a></div><div id="gooModalBody" class="goo-modal-body">Loading…</div></div>`;
+      document.body.appendChild(modal);
+    }
+    const panel=document.getElementById('resultsPanel');
+    if(panel && !panel.querySelector('.results-close')){
+      panel.insertAdjacentHTML('afterbegin','<button class="results-close" type="button" aria-label="Close search suggestions">×</button>');
+      panel.querySelector('.results-close').addEventListener('click',()=>panel.classList.remove('open'));
+    }
+  }
+  function openBusiness(url, push=true){
+    ensureUI();
+    const modal=document.getElementById('gooBusinessModal'), body=document.getElementById('gooModalBody'), full=document.getElementById('gooModalFull');
+    body.innerHTML='<div class="goo-loading">Loading business details…</div>'; full.href=url;
+    modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); document.body.classList.add('modal-open');
+    if(push) history.pushState({gooBusinessModal:true},'',url);
+    fetch(url,{credentials:'same-origin'}).then(r=>r.text()).then(txt=>{
+      const doc=new DOMParser().parseFromString(txt,'text/html'); const main=doc.querySelector('main');
+      body.innerHTML=main?main.innerHTML:'<div class="notice">Business details could not be loaded. <a href="'+esc(url)+'">Open the full page</a>.</div>';
+      const back=body.querySelector('.business-back'); if(back) back.remove();
+    }).catch(()=>{body.innerHTML='<div class="notice">Unable to load details right now. <a href="'+esc(url)+'">Open the full page</a>.</div>';});
+  }
+  function closeBusiness(fromPop=false){
+    const modal=document.getElementById('gooBusinessModal'); if(!modal || !modal.classList.contains('open')) return;
+    modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); document.body.classList.remove('modal-open');
+    if(!fromPop && history.state && history.state.gooBusinessModal) history.back();
+  }
+  document.addEventListener('click',e=>{
+    const close=e.target.closest('[data-close-business]'); if(close){e.preventDefault();closeBusiness(false);return;}
+    const a=e.target.closest('a[href^="/businesses/"]');
+    if(a && !a.target && !e.ctrlKey && !e.metaKey && !e.shiftKey && !e.altKey){e.preventDefault();openBusiness(a.getAttribute('href'),true);}
+  });
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){
+    const modal=document.getElementById('gooBusinessModal'); if(modal?.classList.contains('open')) closeBusiness(false);
+    else document.getElementById('resultsPanel')?.classList.remove('open');
+  }});
+  window.addEventListener('popstate',e=>{
+    const modal=document.getElementById('gooBusinessModal');
+    if(modal?.classList.contains('open')) closeBusiness(true);
+  });
+  document.addEventListener('DOMContentLoaded',ensureUI);
+})();
