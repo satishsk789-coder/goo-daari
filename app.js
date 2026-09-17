@@ -43,7 +43,6 @@ function syncLocationUI(){
  const sel=$('#locationSelect'); if(!sel)return;
  const current=selectedLocation();
  sel.innerHTML=LOCATIONS.map(x=>`<option value="${x.slug}">${x.status==='coming-soon'?'○ ':''}${esc(x.name)}</option>`).join(''); sel.value=current;
- const hint=$('#searchLocationHint'); if(hint) hint.textContent = current==='all' ? 'Search all available locations' : `Search in ${selectedTownName()}`;
 }
 function init(){
  const cat=$('#catFilter'),town=$('#townFilter');
