@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Business | GOO DAARI</title>
+<meta name="description" content="Find local businesses and services on GOO DAARI.">
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#f7faf8;color:#18352a}
+.wrap{max-width:980px;margin:auto;padding:24px}
+.card{background:#fff;border-radius:18px;padding:28px;box-shadow:0 4px 24px rgba(0,0,0,.08)}
+a{color:#16734b;text-decoration:none}
+.btn{display:inline-block;padding:12px 18px;border-radius:10px;background:#16734b;color:white;margin:6px 6px 6px 0}
+.muted{color:#66756d}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a href="index.html">← GOO DAARI</a>
+<div id="app" class="card" style="margin-top:18px">Loading business…</div>
+</div>
+<script src="data.js"></script>
+<script>
+(function(){
+  const params=new URLSearchParams(location.search);
+  const id=params.get('id');
+  const list=window.GOO_DAARI_LISTINGS || window.listings || window.businesses || [];
+  const norm=s=>String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+  const item=list.find(x=>String(x.id||'')===id || norm(x.name||x.business_name||'')===id);
+  const app=document.getElementById('app');
+  if(!item){app.innerHTML='<h1>Business not found</h1><p class="muted">Please return to GOO DAARI and choose a business again.</p>';return;}
+  const name=item.name||item.business_name||'Local Business';
+  const category=item.category||item.service_category||'Local Business';
+  const location=item.location||item.city||'';
+  const phone=item.phone||item.mobile||item.contact||'';
+  const wa=String(phone).replace(/\D/g,'');
+  document.title=name+' | '+category+' | GOO DAARI';
+  app.innerHTML='<h1>'+esc(name)+'</h1>'+
+    '<p><strong>'+esc(category)+'</strong>'+(location?' · '+esc(location):'')+'</p>'+
+    (item.description?'<p>'+esc(item.description)+'</p>':'')+
+    (phone?'<p>Phone: '+esc(phone)+'</p>':'')+
+    '<div>'+
+    (phone?'<a class="btn" href="tel:'+esc(phone)+'">Call</a>':'')+
+    (wa?'<a class="btn" target="_blank" href="https://wa.me/'+wa+'">WhatsApp</a>':'')+
+    '</div>'+
+    '<p class="muted" style="margin-top:24px">GOO DAARI helps you find local businesses, services, rentals and professionals.</p>';
+  function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+})();
+</script>
+</body>
+</html>
