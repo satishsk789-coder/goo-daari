@@ -11,9 +11,23 @@ function locationMatches(r,slug){
  const town=cleanTown(r.Town).toLowerCase();
  return town===slug.replaceAll('-',' ').toLowerCase() || town.includes(slug.replaceAll('-',' ').toLowerCase());
 }
+function categoryMatches(r,cat){
+ if(!cat) return true;
+ const c=String(cat).toLowerCase();
+ const top=String(r['Top Category']||'').toLowerCase();
+ const sub=String(r['Subcategory']||'').toLowerCase();
+ const text=[r['Business Name'],r['Subcategory'],r['Notes']].join(' ').toLowerCase();
+ if(c==='repairs') return /(repair|mechanic|refrigeration|washing machine|appliance|service)/i.test(text);
+ if(c==='education') return /(education|school|college|tuition|coaching|training|academy|institute|tutorial|computer education)/i.test(text);
+ if(c==='food') return top==='shops & local businesses' && /(restaurant|food|tiffin|bakery|cafe|hotel|catering)/i.test(text);
+ if(c==='shops') return top==='shops & local businesses';
+ if(c==='healthcare') return top==='health, care & community';
+ if(c==='automotive') return top==='auto & transport';
+ return top===c;
+}
 function matches(r,q,cat,town){
  const text=[r['Business Name'],r['Top Category'],r['Subcategory'],r['Town'],r['Address'],r['Notes']].join(' ').toLowerCase();
- return (!q||text.includes(q.toLowerCase())) && (!cat||r['Top Category']===cat) && (!town||cleanTown(r['Town']).toLowerCase().includes(town.toLowerCase())) && locationMatches(r,selectedLocation());
+ return (!q||text.includes(q.toLowerCase())) && categoryMatches(r,cat) && (!town||cleanTown(r['Town']).toLowerCase().includes(town.toLowerCase())) && locationMatches(r,selectedLocation());
 }
 function card(r){
  const phone=(r.Phone||'').replace(/[^\d+]/g,''); const wa=(r.Phone||'').replace(/\D/g,'');
@@ -33,7 +47,7 @@ function runSearch(q){
 }
 window.renderCards = function renderCards(){
  const cards=$('#cards'); if(!cards)return;
- const q=new URLSearchParams(location.search).get('q')||''; const path=location.pathname; const pathCat=path.startsWith('/services/')?path.split('/')[2].replace('.html','') : ''; const mapCat={'home-services':'Home Services','agriculture-rentals':'Agriculture & Rentals','electronics-digital':'Electronics & Digital','events-functions':'Events & Functions','auto-transport':'Auto & Transport','shops-local-businesses':'Shops & Local Businesses','professional-personal':'Professional & Personal','health-care-community':'Health, Care & Community'}; const cat=$('#catFilter')?.value||mapCat[pathCat]||''; const town=$('#townFilter')?.value||'';
+ const params=new URLSearchParams(location.search); const q=params.get('q')||''; const path=location.pathname; const pathCat=path.startsWith('/services/')?path.split('/')[2].replace('.html','') : ''; const mapCat={'home-services':'Home Services','agriculture-rentals':'Agriculture & Rentals','electronics-digital':'Electronics & Digital','events-functions':'Events & Functions','auto-transport':'Auto & Transport','shops-local-businesses':'Shops & Local Businesses','professional-personal':'Professional & Personal','health-care-community':'Health, Care & Community'}; const urlCat=params.get('category')||''; const cat=$('#catFilter')?.value||urlCat||mapCat[pathCat]||''; const town=$('#townFilter')?.value||'';
  let rows=DATA.filter(r=>matches(r,q,cat,town)); const limit=Number(cards.dataset.limit||9); cards.innerHTML=rows.slice(0,limit).map(card).join('');
  $('#count')&&($('#count').textContent = `${rows.length} local listing${rows.length!==1?'s':''}${q?' matching “'+q+'”':''} · ${selectedTownName()}`);
  const more=$('#loadMore'); if(more) more.style.display=rows.length>limit?'block':'none';
@@ -46,7 +60,7 @@ function syncLocationUI(){
 }
 function init(){
  const cat=$('#catFilter'),town=$('#townFilter');
- if(cat){[...new Set(DATA.map(r=>r['Top Category']))].sort().forEach(x=>cat.insertAdjacentHTML('beforeend',`<option>${esc(x)}</option>`)); cat.addEventListener('change',renderCards)}
+ if(cat){[...new Set(DATA.map(r=>r['Top Category']))].sort().forEach(x=>cat.insertAdjacentHTML('beforeend',`<option>${esc(x)}</option>`)); const initialCat=new URLSearchParams(location.search).get('category')||''; if(initialCat && [...cat.options].some(o=>o.value.toLowerCase()===initialCat.toLowerCase())) cat.value=[...cat.options].find(o=>o.value.toLowerCase()===initialCat.toLowerCase()).value; cat.addEventListener('change',()=>{ const u=new URL(location.href); if(cat.value) u.searchParams.set('category',cat.value); else u.searchParams.delete('category'); history.replaceState({},'',u); renderCards(); })}
  if(town){[...new Set(DATA.map(r=>cleanTown(r.Town)))].filter(Boolean).sort().forEach(x=>town.insertAdjacentHTML('beforeend',`<option>${esc(x)}</option>`)); town.addEventListener('change',renderCards)}
  const loc=$('#locationSelect'); if(loc){syncLocationUI(); loc.addEventListener('change',e=>setLocation(e.target.value));}
  const input=$('#search'); const btn=$('#searchBtn');
@@ -58,3 +72,53 @@ function init(){
  const lm=$('#loadMore'); if(lm)lm.addEventListener('click',()=>{const c=$('#cards');c.dataset.limit=Number(c.dataset.limit||9)+9;renderCards()});
 }
 document.addEventListener('DOMContentLoaded',init);
+
+/* GOO DAARI analytics events */
+window.gooDaariTrack = function(eventName, params){
+  const payload = Object.assign({event: eventName}, params || {});
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push(payload);
+  if (typeof window.gtag === 'function') {
+    const gaParams = Object.assign({}, params || {});
+    window.gtag('event', eventName, gaParams);
+  }
+};
+
+document.addEventListener('click', function(e){
+  const el = e.target.closest('a,button');
+  if(!el) return;
+  const href = el.getAttribute('href') || '';
+  const text = (el.textContent || '').trim().replace(/\s+/g,' ').slice(0,100);
+
+  if(href.startsWith('tel:')) {
+    gooDaariTrack('contact_click', {method:'phone', link_url:href, link_text:text});
+  } else if(href.includes('wa.me')) {
+    gooDaariTrack('contact_click', {method:'whatsapp', link_url:href, link_text:text});
+  } else if(href.includes('google.com/maps')) {
+    gooDaariTrack('directions_click', {link_url:href, link_text:text});
+  } else if(href.includes('list-your-business')) {
+    gooDaariTrack('list_business_click', {link_text:text, link_url:href});
+  }
+
+  if(el.matches('[data-q]')) {
+    gooDaariTrack('search_suggestion_click', {search_term:el.dataset.q || text});
+  }
+  if(el.matches('[data-cat]')) {
+    gooDaariTrack('category_click', {category:el.dataset.cat || text});
+  }
+}, true);
+
+/* Track searches from the existing search UI */
+document.addEventListener('keydown', function(e){
+  if(e.target && e.target.id === 'search' && e.key === 'Enter') {
+    const term = (e.target.value || '').trim();
+    if(term) gooDaariTrack('search', {search_term:term, location:selectedTownName()});
+  }
+});
+document.addEventListener('click', function(e){
+  if(e.target.closest('#searchBtn')) {
+    const input = document.querySelector('#search');
+    const term = (input?.value || '').trim();
+    if(term) gooDaariTrack('search', {search_term:term, location:selectedTownName()});
+  }
+});
