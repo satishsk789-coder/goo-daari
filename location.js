@@ -4,5 +4,7 @@ window.GOO_DAARI_LOCATIONS = [
   {name:'Samalkota', slug:'samalkota', status:'live'},
   {name:'Pithapuram', slug:'pithapuram', status:'coming-soon'},
   {name:'Kakinada', slug:'kakinada', status:'coming-soon'},
-  {name:'Rajamahendravaram', slug:'rajamahendravaram', status:'coming-soon'}
+  {name:'Rajamahendravaram', slug:'rajamahendravaram', status:'coming-soon'},
+  {name:'Kotananduru', slug:'kotananduru', status:'coming-soon'},
+  {name:'Prathipadu', slug:'prathipadu', status:'coming-soon'}
 ];

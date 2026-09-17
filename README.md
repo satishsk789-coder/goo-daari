@@ -3,7 +3,7 @@
 Local discovery website for GOO DAARI.
 
 ## V3 changes
-- Telugu brand tagline: **గోదారి — అన్నిటికీ ఒకటే దారి.**
+- Telugu brand tagline: **GOO DAARI — అన్నిటికీ ఒకటే దారి.**
 - Added About Us page.
 - Added variable location selector.
 - Live directory locations: Peddapuram and Samalkota.
