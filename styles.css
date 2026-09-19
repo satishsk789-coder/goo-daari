@@ -25,3 +25,21 @@
 .goo-modal{display:none;position:fixed;inset:0;z-index:3000;align-items:center;justify-content:center;padding:18px}.goo-modal.open{display:flex}.goo-modal-backdrop{position:absolute;inset:0;background:rgba(5,29,21,.58);backdrop-filter:blur(5px)}.goo-modal-dialog{position:relative;z-index:1;width:min(760px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:22px;box-shadow:0 30px 90px rgba(0,0,0,.25)}.goo-modal-top{position:sticky;top:0;z-index:2;display:flex;justify-content:flex-end;gap:8px;padding:10px 12px;background:rgba(255,255,255,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}.goo-modal-close{width:36px;height:36px;border:0;border-radius:50%;background:#eff5f2;font-size:23px;cursor:pointer}.goo-modal-full{display:inline-flex;align-items:center;padding:0 12px;border-radius:9px;background:#edf8f4;color:var(--green);font-size:11px;font-weight:850}.goo-modal-body{padding:0}.goo-loading{padding:40px;text-align:center;color:var(--muted)}body.modal-open{overflow:hidden}
 @media(max-width:1000px){.quick-grid{grid-template-columns:repeat(2,1fr)}.cards{grid-template-columns:repeat(2,1fr)}.how-grid{grid-template-columns:repeat(2,1fr)}.about-grid{grid-template-columns:1fr}.town-hero h1{font-size:42px}}
 @media(max-width:760px){.town-hero{padding:48px 0 40px}.town-hero h1{font-size:36px;letter-spacing:-1.4px}.quick-grid,.cards,.how-grid{grid-template-columns:1fr}.section-head{align-items:flex-start;flex-direction:column}.filters{width:100%}.filters select{flex:1;min-width:0}.facts{grid-template-columns:1fr}.goo-modal{padding:0}.goo-modal-dialog{height:100%;max-height:none;border-radius:0}.goo-modal-top{padding-top:12px}.about-card,.panel{padding:20px}}
+
+/* ===== FINAL RESPONSIVE / UX PATCH ===== */
+html,body{max-width:100%;overflow-x:hidden}
+.nav-inner{width:min(1380px,calc(100% - 32px));min-width:0;gap:16px}
+.brand{flex:0 0 auto;min-width:0}
+.brand img{width:168px;max-width:100%;height:auto}
+.location{flex:1 1 auto;min-width:180px;max-width:430px;margin-left:auto;min-height:46px}
+.location-select{width:100%;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.navlinks{flex:0 0 auto;min-width:0;gap:18px;white-space:nowrap}
+.navlinks a{white-space:nowrap}
+@media(max-width:1180px){.nav-inner{gap:12px}.navlinks{gap:13px;font-size:12px}.location{max-width:330px}.brand img{width:155px}.navlinks .nav-cta{display:none}}
+@media(max-width:980px){.location{max-width:250px}.navlinks{display:none}.mobile-menu{display:block;margin-left:auto}.navlinks.show{display:flex;position:absolute;top:76px;right:16px;left:16px;flex-direction:column;align-items:stretch;gap:0;padding:8px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);white-space:normal}.navlinks.show a{padding:13px 14px;border-radius:10px}.navlinks.show a:hover{background:var(--soft)}}
+@media(max-width:760px){.nav{height:68px}.nav-inner{width:calc(100% - 24px)}.brand img{width:145px}.location{display:none}.navlinks.show{top:68px;left:12px;right:12px}.page-hero{padding:48px 0}.page-hero h1,.town-hero h1{font-size:clamp(34px,7vw,48px);line-height:1.08;letter-spacing:-1.5px;overflow-wrap:anywhere}.town-hero p,.page-hero p{font-size:15px}}
+@media(max-width:520px){.brand img{width:132px}.page-hero h1,.town-hero h1{font-size:34px}.container{width:calc(100% - 28px)}}
+/* Keep long guide titles readable and prevent horizontal clipping. */
+.town-hero h1{max-width:1050px;overflow-wrap:anywhere}
+/* Search controls should remain usable at every width. */
+.searchbox{min-width:0}.searchbox input{min-width:0;width:100%}
