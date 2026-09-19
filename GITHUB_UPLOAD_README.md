@@ -1,20 +1,13 @@
-# GOO DAARI — Website Upload Guide
+# GOO DAARI — GitHub Web Upload Friendly
 
-This version is designed for GitHub's browser uploader and does not require the 128 individual business HTML files.
+This version is intentionally kept below GitHub's browser upload file-count limit.
 
-## Upload
-1. Extract this ZIP.
-2. Upload all contents to the existing `satishk789-coder/goo-daari` repository.
-3. Commit to `main`.
-4. Vercel will deploy automatically.
+It keeps the local city/service/guide SEO pages, the new classy homepage, the on-demand service flow, directory search, GA4/GTM assets and generated service photography.
 
-## Business URLs
-Business pages use clean URLs such as:
-`/businesses/peddapuram/example-business.html`
+The 128 separate business HTML files are replaced by one `business.html` plus a Vercel rewrite. Clean business URLs such as `/businesses/peddapuram/example.html` continue to resolve on Vercel using the database in `data.js`.
 
-Vercel rewrites these URLs to the single dynamic `business.html` page using `vercel.json` and the database in `data.js`.
+### Important SEO trade-off
+The city/service/guide SEO pages remain static. Individual business detail pages are rendered from `data.js` at request time through the rewrite, rather than existing as 128 separate static HTML files. If maximum individual-business crawlability becomes important later, use the full SEO build with GitHub Desktop or a CI build step.
 
-## Homepage direction
-- GOO DAARI On-Demand Services is the primary action.
-- Local business listings remain inside Explore Local and SEO pages.
-- No individual provider profiles are shown for GOO DAARI On-Demand Services.
+### Upload
+Upload the contents of this folder to `satishk789-coder/goo-daari` and commit to `main`. Vercel will deploy automatically.

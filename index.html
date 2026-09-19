@@ -1,122 +1,21 @@
-<!doctype html>
-<html lang="en-IN">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GOO DAARI | Book Local Services & Explore Your Town</title>
-<meta name="description" content="Book GOO DAARI doorstep services or explore local businesses, rentals and more — అన్నిటికీ ఒకటే దారి.">
-<meta name="robots" content="index,follow,max-image-preview:large">
-<link rel="canonical" href="https://goodaari.com/">
-<meta property="og:title" content="GOO DAARI | Book Local Services & Explore Your Town">
-<meta property="og:description" content="Book GOO DAARI doorstep services or explore local businesses, rentals and more.">
-<meta property="og:url" content="https://goodaari.com/">
-<meta property="og:type" content="website">
-<link rel="stylesheet" href="/styles.css">
-<script src="/data.js"></script>
-<script src="/location.js"></script>
-<script src="/app.js" defer></script>
-
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-PXP2QQRK');</script>
-<!-- End Google Tag Manager -->
-<!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-BQF9M2QWW3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-BQF9M2QWW3', {send_page_view: true});
-</script>
-</head>
-<body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PXP2QQRK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-
-<header class="nav">
-  <div class="nav-inner">
-    <a class="brand" href="/"><img src="/assets/goo-daari-logo.png" alt="GOO DAARI - Find Local. Get It Done."></a>
-    <div class="location"><span class="pin">●</span><select id="locationSelect" class="location-select" aria-label="Choose location"></select></div>
-    <nav class="navlinks"><a href="/on-demand.html">Book a Service</a><a href="/businesses.html">Explore Local</a><a href="/how-it-works.html">How it works</a><a href="/about.html">About</a><a class="nav-cta" href="/list-your-business.html">List Your Business</a></nav>
-    <button class="mobile-menu" aria-label="Open menu" onclick="document.querySelector('.navlinks').classList.toggle('show')">☰</button>
-  </div>
-</header>
+<!doctype html><html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GOO DAARI | Book Local Services & Explore Your Area</title><meta name="description" content="Book GOO DAARI home services or explore local businesses, shops, rentals and more. Starting with Peddapuram and growing across the Godavari region."><link rel="stylesheet" href="/styles.css"><script src="/data.js"></script><script src="/location.js"></script><script src="/app.js" defer></script></head><body>
+<header class="nav"><div class="nav-inner"><a class="brand" href="/"><img src="/assets/goo-daari-logo.png" alt="GOO DAARI"></a><div class="location">📍 <select id="locationSelect" class="location-select" aria-label="Choose location"></select></div><nav class="navlinks"><a href="/on-demand.html">Services</a><a href="/businesses.html">Explore Local</a><a href="/how-it-works.html">How it works</a><a href="/about.html">About</a><a class="nav-cta" href="/list-your-business.html">List Your Business</a></nav><button class="mobile-menu" aria-label="Menu" onclick="document.querySelector('.navlinks').classList.toggle('show')">☰</button></div></header>
 <main>
-<section class="hero-modern hero-v4">
-  <div class="hero-photo" aria-hidden="true"></div>
-  <div class="hero-wash" aria-hidden="true"></div>
-  <div class="container hero-content">
-    <div class="hero-copy">
-      <div class="eyebrow dark">YOUR LOCAL WAY TO GET THINGS DONE</div>
-      <h1>GOO DAARI <span>—</span><br><strong>అన్నిటికీ ఒకటే దారి.</strong></h1>
-      <p class="hero-lead">Book a GOO DAARI service at your doorstep, or explore trusted local businesses around you.</p>
-      <div class="hero-actions">
-        <a class="hero-primary" href="/on-demand.html">Book a Service <span>→</span></a>
-        <a class="hero-secondary" href="/businesses.html">Explore Local</a>
-      </div>
-      <div class="trust-line"><span>✓ Doorstep service</span><span>✓ Local discovery</span><span>✓ One simple platform</span></div>
-    </div>
-    <div class="hero-search-area">
-      <div class="search-intro"><span>Looking for a local business?</span><small>Search businesses, shops, rentals and more.</small></div>
-      <div class="searchbox premium-search">
-        <span class="search-icon">⌕</span>
-        <input id="search" autocomplete="off" placeholder="Search electrician, restaurant, JCB…" aria-label="Search local businesses and services">
-        <div class="search-location"><span class="pin">●</span><span id="searchLocationText">All locations</span></div>
-        <button id="searchBtn">Search</button>
-      </div>
-      <div id="resultsPanel" class="results-panel" role="listbox" aria-label="Search results"></div>
-      <div class="popular"><span>Popular:</span><button data-q="AC Repair">AC Repair</button><button data-q="Electrician">Electrician</button><button data-q="JCB Rental">JCB Rental</button><button data-q="CCTV">CCTV</button><button data-q="Photographer">Photographer</button></div>
-    </div>
-  </div>
-</section>
-
-<section class="ondemand-section">
-  <div class="container">
-    <div class="section-head service-head">
-      <div><div class="eyebrow dark-green">GOO DAARI SERVICES</div><h2>Need something done?</h2><p>Book a GOO DAARI professional and get the job done at your doorstep.</p></div>
-      <a class="text-link" href="/on-demand.html">View all services →</a>
-    </div>
-    <div class="service-grid">
-      <a class="service-card featured" href="/on-demand.html?service=electrician"><span class="service-symbol">⚡</span><div><h3>Electrician</h3><p>Electrical repairs, installations & more</p></div><b>Book →</b></a>
-      <a class="service-card" href="/on-demand.html?service=plumbing"><span class="service-symbol">🚰</span><div><h3>Plumbing</h3><p>Leaks, taps, pipes, bathrooms & more</p></div><b>Book →</b></a>
-      <a class="service-card" href="/on-demand.html?service=carpenter"><span class="service-symbol">🪚</span><div><h3>Carpenter</h3><p>Furniture, doors, shelves & repairs</p></div><b>Book →</b></a>
-      <a class="service-card" href="/on-demand.html?service=painter"><span class="service-symbol">🎨</span><div><h3>Painter</h3><p>Home painting, touch-ups & walls</p></div><b>Book →</b></a>
-      <a class="service-card" href="/on-demand.html?service=ac"><span class="service-symbol">❄️</span><div><h3>AC Repair</h3><p>Service, repair, installation & more</p></div><b>Book →</b></a>
-      <a class="service-card" href="/on-demand.html?service=appliances"><span class="service-symbol">📺</span><div><h3>TV & Appliance</h3><p>TV, fridge, washing machine, fan & more</p></div><b>Book →</b></a>
-      <a class="service-card" href="/on-demand.html?service=cleaning"><span class="service-symbol">🧹</span><div><h3>Home Cleaning</h3><p>Home, bathroom, kitchen & sofa cleaning</p></div><b>Book →</b></a>
-      <a class="service-card" href="/on-demand.html?service=cctv"><span class="service-symbol">🔒</span><div><h3>CCTV & Security</h3><p>Installation, repair & camera setup</p></div><b>Book →</b></a>
-    </div>
-    <div class="service-banner"><div><span class="mini-label">ONE SIMPLE PROMISE</span><h3>You book with GOO DAARI. We take care of the rest.</h3><p>No need to search through multiple providers for an on-demand service.</p></div><a href="/on-demand.html" class="primary">Book a Service <span>→</span></a></div>
-  </div>
-</section>
-
-<section class="local-section">
-  <div class="container local-wrap">
-    <div class="local-copy"><div class="eyebrow dark-green">EXPLORE LOCAL</div><h2>Looking for a business?</h2><p>Discover shops, restaurants, professionals, rentals, events and local services in your town.</p><a class="outline-btn" href="/businesses.html">Explore Local Businesses →</a></div>
-    <div class="local-tiles">
-      <a href="/businesses.html" class="local-tile"><span>🏪</span><b>Businesses & Shops</b><small>Find local places to buy and visit</small></a>
-      <a href="/businesses.html" class="local-tile"><span>🍽️</span><b>Food & Dining</b><small>Restaurants, tiffin & local food</small></a>
-      <a href="/businesses.html" class="local-tile"><span>🚜</span><b>Rentals</b><small>Equipment, vehicles & more</small></a>
-      <a href="/businesses.html" class="local-tile"><span>🎉</span><b>Events & Functions</b><small>Halls, photographers & services</small></a>
-    </div>
-  </div>
-</section>
-
-<section class="simple-how how-v4"><div class="container"><div class="section-head"><div><div class="eyebrow dark-green">HOW GOO DAARI WORKS</div><h2>Simple from start to finish</h2></div></div><div class="how-grid"><div class="step"><i>01</i><h3>Choose</h3><p>Select the service you need.</p></div><div class="step"><i>02</i><h3>Book</h3><p>Tell us what you need and where.</p></div><div class="step"><i>03</i><h3>We assign</h3><p>A GOO DAARI professional takes the job.</p></div><div class="step"><i>04</i><h3>Get it done</h3><p>Service completed at your doorstep.</p></div></div></div></section>
-
-<section class="why-section"><div class="container"><div class="section-head"><div><div class="eyebrow dark-green">WHY GOO DAARI</div><h2>One platform. Two easy ways to get things done.</h2></div></div><div class="why-grid"><div class="why-card"><span>🔧</span><h3>Book a GOO DAARI Service</h3><p>Need work done at home? Book a service and let GOO DAARI handle the assignment.</p><a href="/on-demand.html">Book now →</a></div><div class="why-card"><span>🔎</span><h3>Explore Local</h3><p>Need a shop, restaurant, rental or local business? Search the GOO DAARI directory.</p><a href="/businesses.html">Explore →</a></div></div></div></section>
-
-<section class="business-cta"><div class="container"><div class="business-cta-inner"><div><div class="eyebrow dark-green">FOR LOCAL BUSINESSES</div><h2>Want more people to discover your business?</h2><p>List your business on GOO DAARI and become part of the local discovery network.</p></div><a class="primary" href="/list-your-business.html">List Your Business <span>→</span></a></div></div></section>
-
-<section class="seo-copy"><div class="container"><h2>Local services and businesses, all in one place</h2><p>GOO DAARI is building a local platform for discovering businesses and booking everyday services. Starting with Peddapuram and expanding across nearby towns, the platform combines local discovery with convenient doorstep services.</p><div class="faq"><details><summary>What is GOO DAARI?</summary><p>GOO DAARI is a local platform for discovering businesses and booking selected doorstep services.</p></details><details><summary>Where is GOO DAARI available?</summary><p>Availability grows location by location. Use the location selector to explore towns currently covered.</p></details><details><summary>How does a GOO DAARI service work?</summary><p>Choose a service, tell us what you need and your location, and GOO DAARI arranges the service.</p></details><details><summary>Can I list my business?</summary><p>Yes. Businesses can submit their details through the List Your Business page.</p></details></div></div></section>
-</main>
-<script>
-document.addEventListener('DOMContentLoaded',()=>{
- const loc=document.getElementById('locationSelect'); const txt=document.getElementById('searchLocationText');
- const update=()=>{if(txt&&loc) txt.textContent=loc.options[loc.selectedIndex]?.textContent.replace(/^○\s*/,'')||'All locations'};
- if(loc){loc.addEventListener('change',update);setTimeout(update,50)}
-});
-</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"GOO DAARI","url":"https://goodaari.com/","description":"Local discovery platform for businesses, services and rentals across the Godavari region.","areaServed":"Godavari region, Andhra Pradesh"}</script>
-<footer><div class="container footer-grid"><div><h3>GOO DAARI</h3><p>Find local businesses, services, rentals and professionals across the Godavari region.</p><p class="footer-tagline">GOO DAARI — అన్నిటికీ ఒకటే దారి.</p></div><div><h4>Explore</h4><a href="/services.html">Services</a><a href="/businesses.html">Businesses</a><a href="/search.html">Search</a><a href="/how-it-works.html">How it works</a><a href="/about.html">About Us</a></div><div><h4>For Business</h4><a href="/list-your-business.html">List Your Business</a><a href="mailto:business@goodaari.com">Partner with us</a></div><div><h4>Locations</h4><span>Peddapuram</span><span>Samalkota</span><span>Pithapuram</span><span>Kakinada</span><span>Rajamahendravaram</span><span>More locations coming</span></div></div><div class="container copyright">© 2026 GOO DAARI. All rights reserved. · Local discovery platform.</div></footer>
-</body></html>
+<section class="hero"><div class="hero-bg"></div><div class="hero-overlay"></div><div class="container hero-inner"><div><div class="eyebrow">YOUR LOCAL WAY TO GET THINGS DONE</div><h1>Need something done?<span class="telugu">అన్నిటికీ ఒకటే దారి.</span></h1><p>Book a GOO DAARI service at your doorstep, or explore trusted local businesses around you.</p><div class="hero-actions"><a class="btn btn-primary" href="/on-demand.html">🔧 Book a Service <span>→</span></a><a class="btn btn-secondary" href="/businesses.html">⌕ Explore Local <span>→</span></a></div></div><div class="hero-search"><h3>What do you need?</h3><p>Search services, businesses, rentals and more.</p><div class="searchbox"><input id="search" placeholder="e.g. AC repair, electrician, restaurant…"><button id="searchBtn">Search</button></div><div class="popular"><span>Popular</span><button data-q="AC Repair">AC Repair</button><button data-q="Electrician">Electrician</button><button data-q="JCB Rental">JCB Rental</button><button data-q="CCTV">CCTV</button></div></div></div></section>
+<section class="trust"><div class="container trust-grid"><div class="trust-item"><span class="trust-icon">✓</span>Local-first</div><div class="trust-item"><span class="trust-icon">₹</span>Clear pricing</div><div class="trust-item"><span class="trust-icon">◷</span>Easy booking</div><div class="trust-item"><span class="trust-icon">♡</span>Local support</div></div></section>
+<section class="section"><div class="container"><div class="section-head"><div><div class="eyebrow">GOO DAARI SERVICES</div><h2>Book a service at your doorstep</h2><p>Simple, local and built around the job you need done.</p></div><a class="text-link" href="/on-demand.html">View all services →</a></div><div class="service-grid">
+<a class="service-card" href="/on-demand.html#electrician"><div class="service-img"><img src="/assets/services/electrician.jpg" alt="Electrician working at home"><span class="service-badge">⚡</span></div><div class="service-body"><h3>Electrician</h3><p>Electrical repairs, installations, fans, lights & more.</p><span class="book-link">Book Service →</span></div></a>
+<a class="service-card" href="/on-demand.html#plumbing"><div class="service-img"><img src="/assets/services/plumbing.jpg" alt="Plumber repairing a sink"><span class="service-badge">💧</span></div><div class="service-body"><h3>Plumbing</h3><p>Leaks, taps, pipes, bathrooms and general plumbing.</p><span class="book-link">Book Service →</span></div></a>
+<a class="service-card" href="/on-demand.html#carpenter"><div class="service-img"><img src="/assets/services/carpenter.jpg" alt="Carpenter working on furniture"><span class="service-badge">🪚</span></div><div class="service-body"><h3>Carpenter</h3><p>Furniture, doors, shelves, fittings and repairs.</p><span class="book-link">Book Service →</span></div></a>
+<a class="service-card" href="/on-demand.html#painter"><div class="service-img"><img src="/assets/services/painter.jpg" alt="Painter working on a wall"><span class="service-badge">🎨</span></div><div class="service-body"><h3>Painter</h3><p>Home painting, touch-ups, putty and walls.</p><span class="book-link">Book Service →</span></div></a>
+<a class="service-card" href="/on-demand.html#ac-repair"><div class="service-img"><img src="/assets/services/ac-repair.jpg" alt="AC technician servicing an air conditioner"><span class="service-badge">❄️</span></div><div class="service-body"><h3>AC Repair & Service</h3><p>Repair, service, installation and cooling issues.</p><span class="book-link">Book Service →</span></div></a>
+<a class="service-card" href="/on-demand.html#appliance-repair"><div class="service-img"><img src="/assets/services/appliance-repair.jpg" alt="Appliance technician repairing a washing machine"><span class="service-badge">⚙️</span></div><div class="service-body"><h3>TV & Appliance Repair</h3><p>TV, fridge, washing machine, fan and more.</p><span class="book-link">Book Service →</span></div></a>
+<a class="service-card" href="/on-demand.html#home-cleaning"><div class="service-img"><img src="/assets/services/home-cleaning.jpg" alt="Professional home cleaning"><span class="service-badge">🧹</span></div><div class="service-body"><h3>Home Cleaning</h3><p>Home, kitchen, bathroom, sofa and deep cleaning.</p><span class="book-link">Book Service →</span></div></a>
+<a class="service-card" href="/on-demand.html#cctv-security"><div class="service-img"><img src="/assets/services/cctv-security.jpg" alt="Technician installing CCTV camera"><span class="service-badge">🔒</span></div><div class="service-body"><h3>CCTV & Security</h3><p>Installation, repair, camera and DVR support.</p><span class="book-link">Book Service →</span></div></a>
+</div></div></section>
+<section class="section soft"><div class="container"><div class="section-head"><div><div class="eyebrow">HOW GOO DAARI WORKS</div><h2>From request to done</h2><p>We keep the customer experience simple.</p></div></div><div class="steps"><div class="step"><div class="step-no">01</div><h3>Choose a service</h3><p>Tell us what you need help with.</p></div><div class="step"><div class="step-no">02</div><h3>Share your details</h3><p>Choose your location and preferred time.</p></div><div class="step"><div class="step-no">03</div><h3>We assign a professional</h3><p>GOO DAARI handles the service assignment.</p></div><div class="step"><div class="step-no">04</div><h3>Get it done</h3><p>Complete the job and rate your experience.</p></div></div></div></section>
+<section class="section"><div class="container"><div class="section-head"><div><div class="eyebrow">EXPLORE LOCAL</div><h2>Discover your neighbourhood</h2><p>When you are looking for a business instead of a service, explore the directory.</p></div><a class="text-link" href="/businesses.html">Explore all →</a></div><div class="explore-grid"><a class="explore-card" href="/businesses.html"><span class="explore-icon">🍽️</span><b>Restaurants</b></a><a class="explore-card" href="/businesses.html"><span class="explore-icon">🏪</span><b>Shops</b></a><a class="explore-card" href="/businesses.html"><span class="explore-icon">🏥</span><b>Healthcare</b></a><a class="explore-card" href="/businesses.html"><span class="explore-icon">🎓</span><b>Education</b></a><a class="explore-card" href="/businesses.html"><span class="explore-icon">🚗</span><b>Automotive</b></a><a class="explore-card" href="/businesses.html"><span class="explore-icon">🏗️</span><b>Rentals</b></a></div></div></section>
+<section class="section soft"><div class="container"><div class="business-callout"><div><div class="eyebrow">FOR LOCAL BUSINESSES</div><h2>Want more people to discover your business?</h2><p>List your business on GOO DAARI and become part of the local discovery network.</p></div><a class="btn btn-primary" href="/list-your-business.html">List Your Business →</a></div></div></section>
+<section class="feature-strip"><div class="container feature-grid"><div class="feature"><div class="feature-icon">📍</div><h3>Local by design</h3><p>We start with real local needs and expand location by location.</p></div><div class="feature"><div class="feature-icon">🛠️</div><h3>Service-led</h3><p>GOO DAARI services are designed around getting the job done, not browsing endless profiles.</p></div><div class="feature"><div class="feature-icon">🌿</div><h3>Built for the Godavari</h3><p>Starting in Peddapuram and growing across nearby towns over time.</p></div></div></section>
+</main><footer class="footer"><div class="container footer-grid"><div><h3>GOO DAARI</h3><p>Book local services or explore businesses, rentals and more.</p><p class="footer-tag">GOO DAARI — అన్నిటికీ ఒకటే దారి.</p></div><div><h4>Services</h4><a href="/on-demand.html">Book a Service</a><a href="/on-demand.html#electrician">Electrician</a><a href="/on-demand.html#ac-repair">AC Repair</a><a href="/on-demand.html#appliance-repair">Appliance Repair</a></div><div><h4>Explore</h4><a href="/businesses.html">Local Businesses</a><a href="/services.html">Directory</a><a href="/how-it-works.html">How it works</a><a href="/about.html">About</a></div><div><h4>For Business</h4><a href="/list-your-business.html">List Your Business</a><a href="mailto:business@goodaari.com">Partner with us</a></div></div><div class="container copyright">© 2026 GOO DAARI. All rights reserved.</div></footer>
+<script>document.addEventListener('DOMContentLoaded',()=>{const loc=document.getElementById('locationSelect'); if(loc){loc.addEventListener('change',()=>localStorage.setItem('gooDaariLocation',loc.value));}})</script></body></html>
