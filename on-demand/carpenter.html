@@ -108,7 +108,7 @@
   <div class="section-head"><div><div class="eyebrow">HOW IT WORKS</div><h2>From "it's not working" to fixed</h2></div></div>
   <div class="path-wrap"><div class="path-line"></div><div class="path-steps">
     <div class="path-step"><div class="path-dot">01<span class="telugu-num">౦౧</span></div><h3>Tell us the issue</h3><p>Tap Book Now and describe the problem in a line.</p></div>
-    <div class="path-step"><div class="path-dot">02<span class="telugu-num">౦౨</span></div><h3>Pick a time</h3><p>As soon as possible, or a slot later today or tomorrow.</p></div>
+    <div class="path-step"><div class="path-dot">02<span class="telugu-num">౦౨</span></div><h3>Pick a time</h3><!-- PRE-ONBOARDING COPY: update once real providers are confirmed for this service --><p>Morning, afternoon, evening or weekend — tell us what suits you.</p></div>
     <div class="path-step"><div class="path-dot">03<span class="telugu-num">౦౩</span></div><h3>We call you back</h3><p>The GOO DAARI team confirms your request and coordinates with a local professional.</p></div>
     <div class="path-step"><div class="path-dot">04<span class="telugu-num">౦౪</span></div><h3>Job done</h3><p>Cost confirmed before work starts. Pay the professional directly — no hidden platform fee.</p></div>
   </div></div>
@@ -158,7 +158,7 @@
 </div></section>
 
 <section class="section"><div class="container callout-green">
-  <div><div class="eyebrow">READY WHEN YOU ARE</div><h2>Let's get it sorted today.</h2><p>Tell us the problem — a local professional will be in touch to confirm timing and cost.</p></div>
+  <div><div class="eyebrow">READY WHEN YOU ARE</div><!-- PRE-ONBOARDING COPY: update once real providers are confirmed for this service --><h2>Let's get it sorted.</h2><p>Tell us the problem — a local professional will be in touch to confirm timing and cost.</p></div>
   <button class="btn" id="openBooking2">Book Carpenter Now →</button>
 </div></section>
 </main>
@@ -171,12 +171,12 @@
 const modal=document.getElementById('bookingModal'),form=document.getElementById('bookingForm'),service=document.getElementById('service'),success=document.getElementById('success');
 const services=['Electrician','Plumbing','Carpenter','Painter','AC Repair & Service','TV & Appliance Repair','Home Cleaning','CCTV & Security'];
 service.innerHTML=services.map(x=>`<option${x==='Carpenter'?' selected':''}>${x}</option>`).join('');
-function openModal(){modal.classList.add('open');}
+function openModal(){modal.classList.add('open');document.body.classList.add('modal-open');}
 document.getElementById('openBooking1').addEventListener('click',openModal);
 document.getElementById('openBooking2').addEventListener('click',openModal);
-document.querySelector('.modal-close').onclick=()=>modal.classList.remove('open');
-document.getElementById('done').onclick=()=>modal.classList.remove('open');
-modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('open')});
+document.querySelector('.modal-close').onclick=()=>{modal.classList.remove('open');document.body.classList.remove('modal-open');};
+document.getElementById('done').onclick=()=>{modal.classList.remove('open');document.body.classList.remove('modal-open');};
+modal.addEventListener('click',e=>{if(e.target===modal){modal.classList.remove('open');document.body.classList.remove('modal-open');}});
 form.addEventListener('submit',async e=>{
   e.preventDefault();
   const submit=form.querySelector('button[type="submit"]');
