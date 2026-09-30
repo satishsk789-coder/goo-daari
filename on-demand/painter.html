@@ -163,7 +163,7 @@
 </div></section>
 </main>
 
-<div class="modal" id="bookingModal"><div class="modal-box"><div class="modal-head"><h3>Book a GOO DAARI Service</h3><button class="modal-close" aria-label="Close">×</button></div><div class="modal-body"><form id="bookingForm"><p class="form-note" style="background:var(--soft);padding:10px 12px;border-radius:10px;margin-bottom:10px">We're currently onboarding verified painters in East Godavari. Share your requirement below and we'll personally reach out as soon as we've lined someone up for your area.</p><div class="form-grid"><div class="field"><label>Service</label><select id="service" name="service" required></select></div><div class="field"><label>Preferred time</label><select name="preferred_time" required><option>Morning</option><option>Afternoon</option><option>Evening</option><option>Weekend</option><option>Flexible / any time</option></select></div><div class="field"><label>Your name</label><input name="customer_name" required placeholder="Your name"></div><div class="field"><label>Mobile number</label><input name="phone" required inputmode="tel" pattern="[0-9+ -]{10,}" placeholder="10-digit mobile number"></div><div class="field full"><label>Location / address</label><input name="address" required placeholder="Peddapuram, Samalkota, Kakinada, Rajahmundry area or full address"></div><div class="field full"><label>What do you need?</label><textarea name="issue" placeholder="Tell us briefly about the issue"></textarea></div><input type="hidden" name="_subject" value="New GOO DAARI Service Booking"><input type="hidden" name="_template" value="table"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_url" value="https://goodaari.com/on-demand/painter.html"><input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off"></div><!-- PRE-ONBOARDING COPY: update once real providers are confirmed for this service --><p class="form-note">Your request will be sent to the GOO DAARI team. We will contact you on the mobile number provided with an update.</p><button class="btn btn-primary" style="width:100%;margin-top:12px" type="submit">Send Service Request →</button></form><div class="success" id="success"><!-- PRE-ONBOARDING COPY: update once real providers are confirmed for this service --><div class="tick">✓</div><h3>Request received</h3><p>Thank you. We've noted your requirement. We're onboarding verified painters in East Godavari right now, and we'll personally call you as soon as we've got someone available for your area.</p><button class="btn btn-secondary" type="button" id="done">Close</button></div></div></div></div>
+<div class="modal" id="bookingModal"><div class="modal-box"><div class="modal-head"><h3>Book a GOO DAARI Service</h3><button class="modal-close" aria-label="Close">×</button></div><div class="modal-body"><form id="bookingForm"><p class="form-note" style="background:var(--soft);padding:10px 12px;border-radius:10px;margin-bottom:10px">We're currently onboarding verified painters in East Godavari. Share your requirement below and we'll personally reach out as soon as we've lined someone up for your area.</p><div class="form-grid"><div class="field"><label>Service</label><select id="service" name="service" required></select></div><div class="field"><label>Preferred time</label><select name="preferred_time" required><option>Morning</option><option>Afternoon</option><option>Evening</option><option>Weekend</option><option>Flexible / any time</option></select></div><div class="field"><label>Your name</label><input name="customer_name" required placeholder="Your name"></div><div class="field"><label>Mobile number</label><input name="phone" required inputmode="tel" pattern="[0-9+ -]{10,}" placeholder="10-digit mobile number"></div><div class="field full"><label>Location / address</label><input name="address" required placeholder="Peddapuram, Samalkota, Kakinada, Rajahmundry area or full address"></div><div class="field full"><label>What do you need?</label><textarea name="issue" placeholder="Tell us briefly about the issue"></textarea></div><input type="hidden" name="_subject" value="New GOO DAARI Service Booking"><input type="hidden" name="_template" value="table"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_url" value="https://goodaari.com/on-demand/painter.html"><input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off"></div><!-- PRE-ONBOARDING COPY: update once real providers are confirmed for this service --><p class="form-note">Your request will be sent to the GOO DAARI team. We will contact you on the mobile number provided with an update.</p><button class="btn btn-primary" style="width:100%;margin-top:12px" type="submit">Send Service Request →</button><div class="form-altchannel">Prefer to talk instead? <a href="tel:+919505461233">Call +91 95054 61233</a> · <a href="https://wa.me/919505461233" target="_blank" rel="noopener">WhatsApp us</a></div><div class="form-error-box" id="formErrorBox"></div></form><div class="success" id="success"><!-- PRE-ONBOARDING COPY: update once real providers are confirmed for this service --><div class="tick">✓</div><h3>Request received</h3><p>Thank you. We've noted your requirement. We're onboarding verified painters in East Godavari right now, and we'll personally call you as soon as we've got someone available for your area.</p><button class="btn btn-secondary" type="button" id="done">Close</button></div></div></div></div>
 
 <footer class="footer footer-v2"><div class="container footer-grid"><div><h3>GOO DAARI</h3><p>Book doorstep services in Peddapuram, Samalkota, Kakinada and Rajahmundry — East Godavari.</p><p class="footer-tag">GOO DAARI — అన్నిటికీ ఒకటే దారి.</p></div><div><h4>Services</h4><a href="/on-demand/electrician.html">Electrician</a><a href="/on-demand/plumbing.html">Plumbing</a><a href="/on-demand/ac-repair.html">AC Repair</a><a href="/on-demand/appliance-repair.html">Appliance Repair</a></div><div><h4>More</h4><a href="/how-it-works.html">How it works</a><a href="/about.html">About</a><a href="/businesses.html">Local business directory</a></div><div><h4>For Business</h4><a href="/list-your-business.html">List Your Business</a><a href="mailto:business@goodaari.com">Partner with us</a></div></div><div class="container copyright">© 2026 GOO DAARI. All rights reserved.</div></footer>
 
@@ -171,7 +171,7 @@
 const modal=document.getElementById('bookingModal'),form=document.getElementById('bookingForm'),service=document.getElementById('service'),success=document.getElementById('success');
 const services=['Electrician','Plumbing','Carpenter','Painter','AC Repair & Service','TV & Appliance Repair','Home Cleaning','CCTV & Security'];
 service.innerHTML=services.map(x=>`<option${x==='Painter'?' selected':''}>${x}</option>`).join('');
-function openModal(){modal.classList.add('open');document.body.classList.add('modal-open');}
+function openModal(){modal.classList.add('open');document.body.classList.add('modal-open');var eb=document.getElementById('formErrorBox');if(eb){eb.classList.remove('show');eb.innerHTML='';}}
 document.getElementById('openBooking1').addEventListener('click',openModal);
 document.getElementById('openBooking2').addEventListener('click',openModal);
 document.querySelector('.modal-close').onclick=()=>{modal.classList.remove('open');document.body.classList.remove('modal-open');};
@@ -192,8 +192,32 @@ form.addEventListener('submit',async e=>{
     form.style.display='none';
     success.classList.add('show');
   }catch(err){
+    try{
+      var fb=document.getElementById('fsFallbackFrame');
+      var tempForm=document.createElement('form');
+      tempForm.action='https://formsubmit.co/satishsk789@gmail.com';
+      tempForm.method='POST';
+      tempForm.target='fsFallbackFrame';
+      Object.keys(data).forEach(function(k){
+        var inp=document.createElement('input');
+        inp.type='hidden';inp.name=k;inp.value=data[k];
+        tempForm.appendChild(inp);
+      });
+      document.body.appendChild(tempForm);
+      tempForm.submit();
+      tempForm.remove();
+    }catch(fbErr){}
     submit.disabled=false;submit.textContent=original;
-    alert('We could not send the request right now. Please check your internet connection and try again.');
+    var errBox=document.getElementById('formErrorBox');
+    var waText=encodeURIComponent('Hi GOO DAARI, I tried booking '+(data.service||'a service')+' online but the form did not go through. My name: '+(data.customer_name||'')+', phone: '+(data.phone||'')+', address: '+(data.address||'')+'. Requirement: '+(data.issue||''));
+    var mailBody=encodeURIComponent('Service: '+(data.service||'')+'\nName: '+(data.customer_name||'')+'\nPhone: '+(data.phone||'')+'\nAddress: '+(data.address||'')+'\nRequirement: '+(data.issue||''));
+    errBox.innerHTML='<span class="fe-title">We could not confirm delivery of your request.</span>We tried an alternate route as backup, but to make sure it is not missed, please reach us directly \u2014 your details are pre-filled.'
+      +'<div class="form-error-actions">'
+      +'<a href="mailto:satishsk789@gmail.com?subject=GOO%20DAARI%20Service%20Request&body='+mailBody+'">\ud83d\udce7 Email us</a>'
+      +'<a href="https://wa.me/919505461233?text='+waText+'" target="_blank" rel="noopener">\ud83d\udcac WhatsApp</a>'
+      +'<a href="tel:+919505461233">\ud83d\udcde Call +91 95054 61233</a>'
+      +'</div>';
+    errBox.classList.add('show');
   }
 });
 document.querySelectorAll('#faqList .faq-q').forEach(btn=>{
@@ -205,4 +229,4 @@ document.querySelectorAll('#faqList .faq-q').forEach(btn=>{
   });
 });
 </script>
-</body></html>
+<iframe name="fsFallbackFrame" id="fsFallbackFrame" style="display:none" aria-hidden="true"></iframe></body></html>
