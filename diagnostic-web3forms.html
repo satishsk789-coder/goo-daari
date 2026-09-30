@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GOO DAARI — Form Diagnostic (Web3Forms)</title>
+<style>
+  body{font-family:system-ui,sans-serif;max-width:560px;margin:50px auto;padding:0 20px;color:#12241c;line-height:1.6}
+  h1{font-size:20px}
+  button{background:#0c3d2e;color:#fff;border:0;padding:13px 20px;border-radius:8px;font-weight:700;cursor:pointer;font-size:15px}
+  button:disabled{opacity:.6;cursor:default}
+  #result{margin-top:24px;padding:16px 18px;border-radius:10px;font-size:14px;white-space:pre-wrap;word-break:break-word;display:none}
+  .ok{background:#e5f7ef;border:1px solid #b7e3cb}
+  .fail{background:#fdeeee;border:1px solid #f3c2c2}
+  .pending{background:#f6f1e7;border:1px solid #e6ddcd}
+</style>
+</head>
+<body>
+  <h1>Web3Forms diagnostic</h1>
+  <p>Tests the exact same request the booking forms now make. Click the button, then check <strong>satishsk789@gmail.com</strong> for the test email if it says success.</p>
+  <button id="run">Run test now →</button>
+  <div id="result"></div>
+
+<script>
+document.getElementById('run').addEventListener('click', async () => {
+  const btn = document.getElementById('run');
+  const box = document.getElementById('result');
+  btn.disabled = true; btn.textContent = 'Testing…';
+  box.style.display = 'block';
+  box.className = 'pending';
+  box.textContent = 'Sending test request to Web3Forms…';
+
+  const payload = {
+    access_key: '78bbac0f-93da-4eed-bc9e-2c2c4744282a',
+    subject: 'GOO DAARI — Web3Forms diagnostic test',
+    name: 'Diagnostic Test',
+    service: 'diagnostic',
+    message: 'This is an automated diagnostic test, not a real booking.',
+    page_url: window.location.href
+  };
+
+  let statusLine = '';
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    statusLine = 'HTTP status: ' + res.status + ' ' + res.statusText;
+    let data;
+    try { data = await res.json(); } catch(e) { data = null; }
+    const bodyText = 'Response body:\n' + JSON.stringify(data, null, 2);
+    if (res.ok && data && data.success) {
+      box.className = 'ok';
+      box.textContent = '✅ SUCCESS — Web3Forms accepted the request.\n\n' + statusLine + '\n' + bodyText + '\n\nCheck satishsk789@gmail.com now. If this email arrives, the real booking forms will work too.';
+    } else {
+      box.className = 'fail';
+      box.textContent = '❌ Web3Forms responded but reported failure.\n\n' + statusLine + '\n' + bodyText;
+    }
+  } catch (networkErr) {
+    box.className = 'fail';
+    box.textContent = '❌ The request itself failed before getting a response.\n\nError: ' + networkErr.message;
+  }
+  btn.disabled = false; btn.textContent = 'Run test again';
+});
+</script>
+</body>
+</html>
