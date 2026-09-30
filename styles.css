@@ -206,3 +206,5 @@ html,body{max-width:100%;overflow-x:hidden}
 .callout-green p{color:#dfe9e2;margin:0}
 .callout-green .btn{background:var(--gold);color:var(--ink)}
 @media(max-width:760px){.callout-green{display:block}.callout-green .btn{margin-top:16px}}
+
+.local-telugu-note{margin:16px 0 0;padding:11px 14px;border:1px solid #d9ebe4;border-radius:12px;background:#f4faf7;color:#31564a;font-family:Ramabhadra,"Noto Sans Telugu",sans-serif;font-size:14px;line-height:1.7}.local-telugu-note strong{color:var(--green)}
