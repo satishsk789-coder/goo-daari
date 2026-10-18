@@ -92,13 +92,13 @@
 
     <div class="form-section">
      <h2>3. Verification documents</h2>
-     <p>Upload clear, readable documents. Please submit only documents necessary for verification. If using Aadhaar, follow applicable privacy/masking requirements.</p>
+     <p>To keep this registration simple and secure, documents are <b>not uploaded through this form</b>. After submitting the application, we will ask you to send the required verification documents through GOO DAARI WhatsApp.</p>
      <div class="provider-grid">
-      <div class="field"><label>Government ID proof <span class="required">*</span></label><input type="file" name="government_id" accept=".jpg,.jpeg,.png,.pdf" required><div class="upload-note">Aadhaar, Driving Licence, Voter ID or Passport. Max 5 MB.</div></div>
-      <div class="field"><label>PAN card</label><input type="file" name="pan_document" accept=".jpg,.jpeg,.png,.pdf"><div class="upload-note">Optional at initial registration; provide if available/required. Max 5 MB.</div></div>
-      <div class="field"><label>Trade licence / certificate</label><input type="file" name="trade_certificate" accept=".jpg,.jpeg,.png,.pdf"><div class="upload-note">Required only where the service legally requires a licence/certificate. Max 5 MB.</div></div>
-      <div class="field"><label>Profile / work photo</label><input type="file" name="work_photo" accept=".jpg,.jpeg,.png"><div class="upload-note">A clear profile photo or recent work photo. Max 5 MB.</div></div>
+      <div class="field"><label>Government ID type <span class="required">*</span></label><select name="government_id_type" required><option value="">Select</option><option>Aadhaar</option><option>Driving Licence</option><option>Voter ID</option><option>Passport</option><option>Other Government ID</option></select></div>
+      <div class="field"><label>PAN available?</label><select name="pan_available"><option>Yes</option><option>No</option><option>Not applicable</option></select></div>
+      <div class="field full"><label>Relevant licence / certificate</label><input name="trade_certificate_details" placeholder="Mention licence/certificate name if applicable"></div>
      </div>
+     <div class="upload-note" style="margin-top:8px">After submission, please send the requested ID proof, PAN (if applicable), licence/certificate (if applicable), and profile/work photos to GOO DAARI WhatsApp. Please share only documents requested for verification.</div>
     </div>
 
     <div class="form-section">
@@ -154,7 +154,9 @@
     <h2>Application received</h2>
     <p>Thank you for registering with GOO DAARI. We have received your provider application and will verify your details before activation.</p>
     <p><b>Please keep your phone available.</b> Our team may contact you for verification.</p>
-    <a class="btn btn-primary" href="/">Back to GOO DAARI</a>
+    <p style="margin:18px 0 10px">Next step: send your verification documents to GOO DAARI WhatsApp.</p>
+    <a class="btn btn-primary" href="https://wa.me/919505461233?text=Hi%20GOO%20DAARI%2C%20I%20have%20submitted%20my%20Service%20Provider%20application.%20I%20am%20sending%20my%20verification%20documents%20as%20requested." target="_blank" rel="noopener">Send Documents on WhatsApp →</a>
+    <p style="margin-top:14px"><a class="small-link" href="/">Back to GOO DAARI</a></p>
    </div>
   </div>
  </div>
@@ -166,15 +168,9 @@
 (function(){
  const form=document.getElementById('providerForm'), error=document.getElementById('providerError'), success=document.getElementById('providerSuccess');
  const today=new Date().toISOString().slice(0,10); const dateInput=form.querySelector('[name="acceptance_date"]'); if(dateInput) dateInput.value=today;
- function validateFiles(){
-   const inputs=form.querySelectorAll('input[type=file]');
-   for(const input of inputs){ if(input.files[0] && input.files[0].size>5*1024*1024){ return input.name+' must be 5 MB or smaller.'; } }
-   return '';
- }
  form.addEventListener('submit',async function(e){
    e.preventDefault(); error.style.display='none'; error.textContent='';
    if(form.querySelectorAll('input[name="services[]"]:checked').length===0){error.textContent='Please select at least one service.';error.style.display='block';return;}
-   const fileError=validateFiles(); if(fileError){error.textContent=fileError;error.style.display='block';return;}
    const submit=form.querySelector('button[type=submit]'); const original=submit.textContent; submit.disabled=true; submit.textContent='Submitting…';
    const fd=new FormData(form); fd.append('createdAt',new Date().toISOString());
    try{
