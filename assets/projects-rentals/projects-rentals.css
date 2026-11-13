@@ -13,3 +13,8 @@ main{padding:34px 0 70px}.layout{display:grid;grid-template-columns:minmax(0,1.5
 .projects-visual-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .projects-visual-card{overflow:hidden;padding:0}.projects-visual-card .tile-copy{padding:14px}
 @media(max-width:700px){.project-photo{height:190px}.projects-visual-grid{grid-template-columns:1fr}}
+
+/* Broader Projects & Rentals visual grid */
+.goo-projects-grid-wide{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+@media(max-width:980px){.goo-projects-grid-wide{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(max-width:700px){.goo-projects-grid-wide{grid-template-columns:repeat(2,minmax(0,1fr))!important}.goo-projects-grid-wide .goo-project-card img{height:125px}}
