@@ -3,9 +3,9 @@ const LOCATIONS = window.GOO_DAARI_LOCATIONS || [{name:'All locations',slug:'all
 const $ = s => document.querySelector(s);
 const esc = s => String(s??'').replace(/[&<>'"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[m]));
 const cleanTown=t=>String(t||'').replace(/Peddapuram & surrounding/i,'Peddapuram').replace(/Peddapuram \/ East Godavari/i,'Peddapuram').replace(/Peddapuram search area/i,'Peddapuram');
-function selectedLocation(){ return localStorage.getItem('gooDaariLocation') || 'all'; }
+function selectedLocation(){ return 'all'; }
 function setLocation(slug){ localStorage.setItem('gooDaariLocation',slug); syncLocationUI(); renderCards(); runSearch($('#search')?.value.trim()||''); }
-function selectedTownName(){ const slug=selectedLocation(); return LOCATIONS.find(x=>x.slug===slug)?.name || 'All locations'; }
+function selectedTownName(){ return 'All locations'; }
 function locationMatches(r,slug){
  if(!slug || slug==='all') return true;
  const town=cleanTown(r.Town).toLowerCase();
